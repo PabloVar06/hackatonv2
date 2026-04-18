@@ -1,5 +1,3 @@
-using Unity.Hierarchy;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -14,7 +12,7 @@ public class Player : MonoBehaviour
     private bool cayendo = false;
     //public Transform target;
     private Vector3 targetPosition;
-
+    public bool controllable = false;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,17 +21,31 @@ public class Player : MonoBehaviour
        targetPosition = transform.position;
     }
 
+    
+
+    public void SetControllable(bool value)
+    {
+        controllable = value;
+        if (!value)
+        {
+            // Detener movimiento al desactivarse
+            moviendo = false;
+            rb2D.linearVelocity = Vector2.zero;
+            targetPosition = rb2D.position;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
-        
 
+        if (!controllable) return;
 
         if (!cayendo)
         {
 
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && !moviendo)
             {
                 Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 float mouseX = mousePosition.x;
