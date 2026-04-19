@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1994570878233260885}
   m_Layer: 0
   m_Name: Personaje 1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -180,10 +180,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f732432dda94114fb2cec89f869d1cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  miCuadrante: 1
   footCollider: {fileID: 0}
+  sueloLayer:
+    serializedVersion: 2
+    m_Bits: 0
   stepSize: 0.6
   vel: 0.1
-  controllable: 0
 --- !u!1 &5866892325658879616
 GameObject:
   m_ObjectHideFlags: 0
