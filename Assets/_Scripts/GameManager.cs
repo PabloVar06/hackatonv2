@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     private HashSet<PlayerID> playersEnMeta = new HashSet<PlayerID>();
     public int totalPlayers = 4;
+    public float tiempoAnimacionCerrar = 1f;
 
     private void Awake()
     {
@@ -48,13 +50,28 @@ public class GameManager : MonoBehaviour
         SceneAdmin.Instance.CambiarEscena(escenaGanar);
     }
 
+    // Llamado desde el botón reiniciar del panel GO
+    public void Reiniciar()
+    {
+        StartCoroutine(ReiniciarConAnimacion());
+    }
+
     private void GameOver()
     {
         animatorGO.SetTrigger("Abrir");
     }
 
-    public void GOPanel()
+    private IEnumerator ReiniciarConAnimacion()
     {
+        // Cerrar panel GO con animación
         animatorGO.SetTrigger("Cerrar");
+
+        // Esperar que termine la animación
+        yield return new WaitForSeconds(tiempoAnimacionCerrar);
+
+        // Reiniciar la escena actual
+        SceneAdmin.Instance.CambiarEscena(
+            UnityEngine.SceneManagement.SceneManager.GetActiveScene().name
+        );
     }
 }
