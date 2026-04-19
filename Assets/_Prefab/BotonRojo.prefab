@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1987894410167979769}
   - component: {fileID: 6549823344058197807}
+  - component: {fileID: -4733927465540097518}
   m_Layer: 0
   m_Name: BotonRojo
   m_TagString: Untagged
@@ -80,6 +81,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.2289433, y: 0.6537926}
   m_EdgeRadius: 0
+--- !u!114 &-4733927465540097518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611418804461257278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 939ea7f96a057e744af329fcb976039c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactions
+  OnPlayerEntra:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPlayerSale:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &657104560545216262
 GameObject:
   m_ObjectHideFlags: 0

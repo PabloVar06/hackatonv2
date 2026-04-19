@@ -14,7 +14,6 @@ public class ObjetoInteractuado : MonoBehaviour
     {
         EventManager.Instance.EventPlayerInteractua += OnInteractua;
         EventManager.Instance.EventPlayerDejoInteractuar += OnDejoInteractuar;
-        EventManager.Instance.EventPlayerMuere += OnMuere;
     }
 
     private void OnDestroy()
@@ -23,7 +22,6 @@ public class ObjetoInteractuado : MonoBehaviour
         {
             EventManager.Instance.EventPlayerInteractua -= OnInteractua;
             EventManager.Instance.EventPlayerDejoInteractuar -= OnDejoInteractuar;
-            EventManager.Instance.EventPlayerMuere -= OnMuere;
         }
     }
 
@@ -48,9 +46,4 @@ public class ObjetoInteractuado : MonoBehaviour
         OnNoAccion?.Invoke();
     }
 
-    private void OnMuere(PlayerID id)
-    {
-        if (!DebeEscuchar(id)) return;
-        print($"Player {id} murio");
-    }
 }

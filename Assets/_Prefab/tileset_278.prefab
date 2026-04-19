@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6398966775605873638}
   - component: {fileID: 725524392484904817}
   - component: {fileID: 988238217590345630}
+  - component: {fileID: 3623633743731700489}
   m_Layer: 0
   m_Name: tileset_278
   m_TagString: Untagged
@@ -138,3 +139,21 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.6037736, y: 0.6037736}
   m_EdgeRadius: 0
+--- !u!114 &3623633743731700489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5893479707855278493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 939ea7f96a057e744af329fcb976039c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactions
+  OnPlayerEntra:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPlayerSale:
+    m_PersistentCalls:
+      m_Calls: []

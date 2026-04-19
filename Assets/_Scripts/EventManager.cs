@@ -14,7 +14,8 @@ public class EventManager : MonoBehaviour
     // Declarations (No "1"s)
     public event Action<PlayerID> EventPlayerInteractua;
     public event Action<PlayerID> EventPlayerDejoInteractuar;
-    public event Action<PlayerID> EventPlayerMuere;
+    public event Action EventPlayerMuere;
+    public event Action<PlayerID> EventPlayerEstaEnMeta;
 
     public void PlayerInteractua(PlayerID id)
     {
@@ -28,8 +29,13 @@ public class EventManager : MonoBehaviour
         EventPlayerDejoInteractuar?.Invoke(id);
     }
 
-    public void PlayerMuere(PlayerID id)
+    public void PlayerMuere()
     {
-        EventPlayerMuere?.Invoke(id);
+        EventPlayerMuere?.Invoke();
+    }
+
+    public void PlayerEnMeta(PlayerID id)
+    {
+        EventPlayerEstaEnMeta?.Invoke(id);
     }
 }

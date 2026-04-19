@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8192843782583993841}
   - component: {fileID: 6582091652389751915}
+  - component: {fileID: 1932305381625190563}
   m_Layer: 0
   m_Name: Pinchos
   m_TagString: Untagged
@@ -80,6 +81,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.5756655, y: 0.39409354}
   m_EdgeRadius: 0
+--- !u!114 &1932305381625190563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879052019407242858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1f698d83fe5dc447b83bc309a4ad0cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muerte
 --- !u!1 &5108598670433251660
 GameObject:
   m_ObjectHideFlags: 0

@@ -101,6 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6139322830775260199}
   - component: {fileID: 3433933320264569221}
+  - component: {fileID: 5822901643183583790}
   m_Layer: 0
   m_Name: BotonVerde
   m_TagString: Untagged
@@ -171,6 +172,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.223703, y: 0.6545767}
   m_EdgeRadius: 0
+--- !u!114 &5822901643183583790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516083348625057094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 939ea7f96a057e744af329fcb976039c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactions
+  OnPlayerEntra:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPlayerSale:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5227198593519491958
 GameObject:
   m_ObjectHideFlags: 0
