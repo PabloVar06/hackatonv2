@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -6130042463046389513}
   - component: {fileID: 6884455209441246023}
   - component: {fileID: 3986610865553464797}
+  - component: {fileID: 5596455338995546430}
   m_Layer: 0
   m_Name: PlataformaNaranja
   m_TagString: Untagged
@@ -66,11 +67,11 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.30199504, y: 0.3592552}
+  m_Offset: {x: -0.30199504, y: -0.009071648}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -80,7 +81,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.2151551, y: 1.3485842}
+  m_Size: {x: 1.2151551, y: 0.6119306}
   m_EdgeRadius: 0
 --- !u!114 &6884455209441246023
 MonoBehaviour:
@@ -140,6 +141,33 @@ MonoBehaviour:
   stepSize: 0.6
   vel: 1
   limitePasos: 3
+--- !u!50 &5596455338995546430
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 768797016021491269}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &3141231938134352783
 GameObject:
   m_ObjectHideFlags: 0
