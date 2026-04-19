@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 282754202586449843}
   - component: {fileID: -6130042463046389513}
+  - component: {fileID: 6884455209441246023}
   m_Layer: 0
   m_Name: PlataformaNaranja
   m_TagString: Untagged
@@ -80,6 +81,25 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.2151551, y: 1.3485842}
   m_EdgeRadius: 0
+--- !u!114 &6884455209441246023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 768797016021491269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5abdc2f0de4e0a43876d2cfeddc8beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObjetoInteractuado
+  escucharA: 
+  OnAccion:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNoAccion:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3141231938134352783
 GameObject:
   m_ObjectHideFlags: 0
