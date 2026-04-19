@@ -21,8 +21,14 @@ EditorBuildSettings:
     path: "Assets/Scenes/Men\xFA Principal.unity"
     guid: 63ae304f2130ddc4eb393560a250a1b1
   - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 12557b49becba2b44b67153a3fcd49e0
+  - enabled: 1
     path: Assets/Scenes/Level2FINAL.unity
     guid: a3a15a26801f71b469911a4f99a8f0a0
+  - enabled: 1
+    path: Assets/Creditos/Creditos.unity
+    guid: 51985661c533b254fb117a376685f816
   - enabled: 0
     path: Assets/Scenes/Level1.unity
     guid: e620cb15d0a89b245a212d7678487b7d
