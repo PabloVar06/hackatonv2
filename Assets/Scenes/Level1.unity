@@ -618,8 +618,16 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7240767795969280779, guid: 2018ce758db8f0f4391f18a7d7f50c2a, type: 3}
+      propertyPath: vel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240767795969280779, guid: 2018ce758db8f0f4391f18a7d7f50c2a, type: 3}
       propertyPath: stepSize
-      value: 6
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240767795969280779, guid: 2018ce758db8f0f4391f18a7d7f50c2a, type: 3}
+      propertyPath: limitePasos
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7679230376095390423, guid: 2018ce758db8f0f4391f18a7d7f50c2a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2528,7 +2536,7 @@ GameObject:
   - component: {fileID: 1553335440}
   m_Layer: 0
   m_Name: Personaje
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

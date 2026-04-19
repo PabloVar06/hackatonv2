@@ -166,9 +166,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlataformaRitmica
   stepSize: 0.6
-  vel: 5
+  vel: 1
   limitePasos: 3
-  regresarAlDesactivar: 1
 --- !u!1 &1060806732897528701
 GameObject:
   m_ObjectHideFlags: 0
