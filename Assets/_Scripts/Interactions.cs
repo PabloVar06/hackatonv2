@@ -5,6 +5,10 @@ public class Interactions : MonoBehaviour
 {
     public UnityEvent OnPlayerEntra;
     public UnityEvent OnPlayerSale;
+    public AudioClip AudioClipEntrada;
+    public AudioSource AudioEntrada;
+    public AudioClip AudioClipSalida;
+    public AudioSource AudioSalida;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -27,7 +31,7 @@ public class Interactions : MonoBehaviour
             {
                 Debug.LogError("<color=orange>BOTÓN:</color> El objeto tiene el Tag 'Player' pero NO tiene el script 'Player'.");
             }
-
+            AudioEntrada.PlayOneShot(AudioClipEntrada, 1);
             OnPlayerEntra?.Invoke();
         }
     }
@@ -41,6 +45,7 @@ public class Interactions : MonoBehaviour
                 EventManager.Instance.PlayerDejoInteractuar(player.playerID);
 
             OnPlayerSale?.Invoke();
+            AudioSalida.PlayOneShot(AudioClipSalida, 1);    
         }
     }
 }
