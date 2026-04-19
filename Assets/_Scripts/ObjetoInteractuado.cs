@@ -4,7 +4,7 @@ using UnityEngine.Events;
 public class ObjetoInteractuado : MonoBehaviour
 {
     [Header("Filtro de Player")]
-    public PlayerID[] escucharA; // Seleccionas en Inspector cu�les escuchar
+    public PlayerID[] escucharA; 
 
     [Header("Eventos publicos")]
     public UnityEvent OnAccion;
@@ -12,12 +12,22 @@ public class ObjetoInteractuado : MonoBehaviour
 
     private void Start()
     {
-        EventManager.Instance.EventPlayerInteractua += OnInteractua;
-        EventManager.Instance.EventPlayerDejoInteractuar += OnDejoInteractuar;
+        // Pequeña alarma visual por si olvidas poner el EventManager en el nivel
+        if (EventManager.Instance == null)
+        {
+            Debug.LogError("<color=red>ERROR FATAL:</color> No hay ningún EventManager en la escena. Pon el script en un GameObject vacío.", this);
+        }
+        else
+        {
+            // Nos suscribimos de forma segura
+            EventManager.Instance.EventPlayerInteractua += OnInteractua;
+            EventManager.Instance.EventPlayerDejoInteractuar += OnDejoInteractuar;
+        }
     }
 
     private void OnDestroy()
     {
+        // Siempre verificamos que exista antes de intentar desuscribirnos
         if (EventManager.Instance != null)
         {
             EventManager.Instance.EventPlayerInteractua -= OnInteractua;
@@ -25,10 +35,9 @@ public class ObjetoInteractuado : MonoBehaviour
         }
     }
 
-    // Verifica si debe escuchar a ese player
     private bool DebeEscuchar(PlayerID id)
     {
-        if (escucharA == null || escucharA.Length == 0) return true; // Si no filtra, escucha a todos
+        if (escucharA == null || escucharA.Length == 0) return true; 
         foreach (var p in escucharA)
             if (p == id) return true;
         return false;
@@ -45,5 +54,4 @@ public class ObjetoInteractuado : MonoBehaviour
         if (!DebeEscuchar(id)) return;
         OnNoAccion?.Invoke();
     }
-
 }
