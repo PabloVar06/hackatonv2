@@ -11,7 +11,7 @@ public class Quadrant : MonoBehaviour
     public void SetActive(bool active)
     {
         isActive = active;
-        player.SetControllable(active); // Bloquear/desbloquear input del jugador
+        //player.SetControllable(active); // Bloquear/desbloquear input del jugador
 
         // Mostrar indicador visual si tienes uno
         if (visualIndicator != null)
