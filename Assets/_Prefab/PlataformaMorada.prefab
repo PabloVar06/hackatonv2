@@ -193,6 +193,7 @@ GameObject:
   - component: {fileID: 6354202161385088252}
   - component: {fileID: 8618903118292099998}
   - component: {fileID: 8617420298540936980}
+  - component: {fileID: 7935458467523265040}
   m_Layer: 0
   m_Name: PlataformaMorada
   m_TagString: Untagged
@@ -275,10 +276,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5abdc2f0de4e0a43876d2cfeddc8beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjetoInteractuado
-  escucharA: 
+  escucharA: 03000000
   OnAccion:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7935458467523265040}
+        m_TargetAssemblyTypeName: PlataformaRitmica, Assembly-CSharp
+        m_MethodName: ActivarPlataforma
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnNoAccion:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7935458467523265040}
+        m_TargetAssemblyTypeName: PlataformaRitmica, Assembly-CSharp
+        m_MethodName: DesactivarPlataforma
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7935458467523265040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8611063277341682663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd8dae6c9991ce8438cd8c39b6d7c7d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlataformaRitmica
+  stepSize: 0.6
+  vel: 1
+  limitePasos: 3
