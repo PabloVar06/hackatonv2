@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     public int miCuadrante = 1; 
     private bool seMovioEsteCiclo = false;
 
+    public PlayerID playerID;
+
     [Header("Movimiento y Físicas")]
     [SerializeField] Collider2D footCollider; 
     [SerializeField] LayerMask sueloLayer;    

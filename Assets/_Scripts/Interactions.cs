@@ -11,7 +11,7 @@ public class Interactions : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            // Obtener el ID del player que entró
+            // Obtener el ID del player que entrï¿½
             Player player = collision.GetComponent<Player>();
             if (player != null)
                 EventManager.Instance.PlayerInteractua(player.playerID);

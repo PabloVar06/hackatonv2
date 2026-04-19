@@ -4,9 +4,9 @@ using UnityEngine.Events;
 public class ObjetoInteractuado : MonoBehaviour
 {
     [Header("Filtro de Player")]
-    public PlayerID[] escucharA; // Seleccionas en Inspector cuáles escuchar
+    public PlayerID[] escucharA; // Seleccionas en Inspector cuï¿½les escuchar
 
-    [Header("Eventos públicos")]
+    [Header("Eventos publicos")]
     public UnityEvent OnAccion;
     public UnityEvent OnNoAccion;
 
@@ -19,9 +19,12 @@ public class ObjetoInteractuado : MonoBehaviour
 
     private void OnDestroy()
     {
-        EventManager.Instance.EventPlayerInteractua -= OnInteractua;
-        EventManager.Instance.EventPlayerDejoInteractuar -= OnDejoInteractuar;
-        EventManager.Instance.EventPlayerMuere -= OnMuere;
+        if (EventManager.Instance != null)
+        {
+            EventManager.Instance.EventPlayerInteractua -= OnInteractua;
+            EventManager.Instance.EventPlayerDejoInteractuar -= OnDejoInteractuar;
+            EventManager.Instance.EventPlayerMuere -= OnMuere;
+        }
     }
 
     // Verifica si debe escuchar a ese player
@@ -48,6 +51,6 @@ public class ObjetoInteractuado : MonoBehaviour
     private void OnMuere(PlayerID id)
     {
         if (!DebeEscuchar(id)) return;
-        print($"Player {id} murió");
+        print($"Player {id} murio");
     }
 }

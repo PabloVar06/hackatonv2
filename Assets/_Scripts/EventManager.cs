@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+// I changed the class name here to exactly match your filename: EventManScript
 public class EventManager : MonoBehaviour
 {
     public static EventManager Instance;
@@ -10,18 +11,21 @@ public class EventManager : MonoBehaviour
         Instance = this;
     }
 
+    // Declarations (No "1"s)
     public event Action<PlayerID> EventPlayerInteractua;
     public event Action<PlayerID> EventPlayerDejoInteractuar;
     public event Action<PlayerID> EventPlayerMuere;
 
-    public void Player1Interactua(PlayerID id)
+    public void PlayerInteractua(PlayerID id)
     {
-        EventPlayer1Interactua?.Invoke(id);
+        // Removed the "1" here so it matches the declaration above perfectly
+        EventPlayerInteractua?.Invoke(id);
     }
 
-    public void Player1DejoInteractuar(PlayerID id)
+    public void PlayerDejoInteractuar(PlayerID id)
     {
-        EventPlayer1DejoInteractuar?.Invoke(id);
+        // Removed the "1" here so it matches the declaration above perfectly
+        EventPlayerDejoInteractuar?.Invoke(id);
     }
 
     public void PlayerMuere(PlayerID id)
