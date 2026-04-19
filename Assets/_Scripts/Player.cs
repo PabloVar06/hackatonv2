@@ -3,7 +3,6 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Configuración de Ritmo")]
-    [Tooltip("Asigna 1, 2, 3 o 4 dependiendo del cuadrante de este alien")]
     public int miCuadrante = 1; 
     private bool seMovioEsteCiclo = false;
 
@@ -12,17 +11,20 @@ public class Player : MonoBehaviour
     [Header("Movimiento y Físicas")]
     [SerializeField] Collider2D footCollider; 
     [SerializeField] LayerMask sueloLayer;    
+    [SerializeField] LayerMask paredLayer;
     public float stepSize = 5;
     public float vel = 5;
+    
+    [Header("Sistema de Seguridad")]
+    [Tooltip("Tiempo máximo en segundos que puede durar un paso antes de forzar su detención")]
+    public float tiempoMaximoPaso = 1f;
+    private float temporizadorPaso = 0f; // Llevará la cuenta del tiempo
     
     private Rigidbody2D rb2D;
     private bool moviendo;
     private bool cayendo;
     private Vector3 targetPosition;
 
-    // --- SUSCRIPCIÓN A EVENTOS DEL RITMO ---
-    // OnEnable y OnDisable son vitales cuando usamos Action/Eventos en Unity
-    // para evitar errores si el personaje se destruye o desactiva.
     private void OnEnable()
     {
         RhythmManager.OnQuadrantActive += ResetearTurno;
@@ -33,16 +35,13 @@ public class Player : MonoBehaviour
         RhythmManager.OnQuadrantActive -= ResetearTurno;
     }
 
-    // Esta función se llama automáticamente cuando el RhythmManager anuncia un nuevo cuadrante activo
     private void ResetearTurno(int cuadranteActivo)
     {
-        // Si el cuadrante que se acaba de activar es el mío, recupero mi capacidad de moverme
         if (cuadranteActivo == miCuadrante)
         {
             seMovioEsteCiclo = false;
         }
     }
-    // ---------------------------------------
 
     void Start()
     {
@@ -53,14 +52,14 @@ public class Player : MonoBehaviour
     void Update()
     {
         cayendo = !footCollider.IsTouchingLayers(sueloLayer);
-        if (cayendo) Debug.DrawRay(transform.position, Vector2.down * 0.5f, Color.red);
     }
-
-    // --- LÓGICA DE BOTONES ---
 
     public void MoverIzquierda()
     {
         if (!PuedeMoverse()) return;
+
+        // NUEVO: Si hay una pared a la izquierda, cancelamos el movimiento
+        if (HayPared(Vector2.left)) return; 
 
         targetPosition = new Vector3(transform.position.x - stepSize, transform.position.y, 0);
         IniciarMovimiento();
@@ -70,57 +69,79 @@ public class Player : MonoBehaviour
     {
         if (!PuedeMoverse()) return;
 
+        // NUEVO: Si hay una pared a la derecha, cancelamos el movimiento
+        if (HayPared(Vector2.right)) return; 
+
         targetPosition = new Vector3(transform.position.x + stepSize, transform.position.y, 0);
         IniciarMovimiento();
     }
 
-    // Función auxiliar para mantener el código limpio
     private bool PuedeMoverse()
     {
-        // 1. Reglas físicas: ¿Ya se está moviendo o está en el aire?
         if (moviendo || cayendo) return false;
-
-        // 2. Reglas de ritmo: ¿Existe el RhythmManager? (Por seguridad)
         if (RhythmManager.Instance == null) return false;
-
-        // 3. Reglas de ritmo: ¿Es mi turno activo?
+        
         if (RhythmManager.Instance.currentQuadrant != miCuadrante || 
             RhythmManager.Instance.currentState != RhythmManager.RhythmState.Active)
         {
-            Debug.Log($"Alien {miCuadrante}: ¡Fallaste el timing!");
-            // TIP: Aquí podrías llamar a una animación de "Error" en el futuro
             return false; 
         }
 
-        // 4. Reglas de ritmo: ¿Ya gasté mi movimiento en este ciclo?
-        if (seMovioEsteCiclo)
-        {
-            Debug.Log($"Alien {miCuadrante}: Ya te moviste este beat, espera al siguiente ciclo.");
-            return false;
-        }
+        if (seMovioEsteCiclo) return false;
 
-        // Si pasa todas las pruebas, sí puede moverse
         return true;
     }
 
     private void IniciarMovimiento()
     {
         moviendo = true;
-        seMovioEsteCiclo = true; // Gastamos el turno de este ciclo
+        seMovioEsteCiclo = true; 
+        temporizadorPaso = 0f; // Reseteamos el cronómetro a 0 cada vez que empezamos un paso
     }
 
-    // ---------------------------------------
+    // Función que verifica si hay una pared en la dirección en la que queremos ir
+    private bool HayPared(Vector2 direccion)
+    {
+        // Physics2D.Raycast lanza un rayo. 
+        // Parámetros: Origen, Dirección, Distancia, Filtro de Capas
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direccion, stepSize, paredLayer);
+        
+        if (hit.collider != null)
+        {
+            Debug.Log($"Alien {miCuadrante}: Movimiento bloqueado por {hit.collider.name}");
+            return true; // Sí, hay una pared
+        }
+        
+        return false; // No hay pared, el camino está libre
+    }
 
     void FixedUpdate()
     {
         if (!moviendo) return;
 
+        // 1. Aumentamos nuestro cronómetro de seguridad
+        temporizadorPaso += Time.fixedDeltaTime;
+
+        // 2. Intentamos movernos normalmente
         Vector2 newPosition = Vector2.MoveTowards(rb2D.position, targetPosition, vel * Time.fixedDeltaTime);
         rb2D.MovePosition(newPosition);
 
-        if (Vector2.Distance(rb2D.position, targetPosition) < 0.01f || cayendo)
+        // 3. Verificamos las 3 condiciones para detenernos:
+        //    - Llegamos a la meta (con un margen más amplio de 0.05f)
+        //    - Nos caímos por un precipicio
+        //    - NUEVO: Se acabó el tiempo de seguridad (1 segundo)
+        if (Vector2.Distance(rb2D.position, targetPosition) < 0.05f || cayendo || temporizadorPaso >= tiempoMaximoPaso)
         {
-            if(!cayendo) rb2D.MovePosition(targetPosition);
+            if (temporizadorPaso >= tiempoMaximoPaso)
+            {
+                Debug.LogWarning($"Alien {miCuadrante}: Se activó el sistema de seguridad. Forzando detención.");
+            }
+
+            // Forzamos al alien a encajar perfectamente en su meta si no se está cayendo
+            if (!cayendo) 
+            {
+                rb2D.position = targetPosition; 
+            }
             
             rb2D.linearVelocity = new Vector2(0, rb2D.linearVelocity.y);
             moviendo = false;
