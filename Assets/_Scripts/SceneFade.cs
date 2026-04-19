@@ -5,9 +5,9 @@ using UnityEngine.UI;
 public class SceneFade : MonoBehaviour
 {
     public static SceneFade Instance;
-
-    public Image fadeImage; // Panel negro del Canvas
+    public Image fadeImage;
     public float fadeDuration = 1f;
+    public bool fadeAlIniciar = true; // Si está activo hace FadeOut al iniciar
 
     private void Awake()
     {
@@ -16,8 +16,8 @@ public class SceneFade : MonoBehaviour
 
     private void Start()
     {
-        // Al iniciar la escena hace fade out (negro ? transparente)
-        StartCoroutine(FadeOut());
+        if (fadeAlIniciar)
+            StartCoroutine(FadeOut());
     }
 
     public IEnumerator FadeOut()
